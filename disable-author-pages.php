@@ -4,12 +4,14 @@ Plugin Name: Disable Author Pages
 Plugin URI: http://staude.net/wordpress/plugins/DisableAuthorPages
 Description: Disable the author pages in wordpress and redirect to the homepage.
 Author: Frank Staude
-Version: 0.1
+Version: 0.2
+Text Domain: disable_author_pages
+Domain Path: languages
 Author URI: http://www.staude.net/
-Compatibility: WordPress 3.5.1
+Compatibility: WordPress 3.6
 */
 
-/*  Copyright 2012  Frank Staude  (email : frank@staude.net)
+/*  Copyright 2013  Frank Staude  (email : frank@staude.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -1,6 +1,7 @@
 <?php
 
-/*  Copyright 2012  Frank Staude  (email : frank@staude.net)
+/*  
+ Copyright 2013  Frank Staude  (email : frank@staude.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,51 +27,90 @@ class disable_author_pages {
      * Register all actions and filters
      */
     function __construct() {
-        add_action( 'template_redirect',    array( 'disable_author_pages', 'disableauthorpage' ) );
-        add_action( 'admin_init',           array( 'disable_author_pages', 'registerSettings' ) );
-        add_action( 'admin_menu',           array( 'disable_author_pages', 'optionsMenu' ) );
-        
-        //add_action( 'plugins_loaded',   array( 'mime_types_extended', 'load_translations' ) );
-        //add_filter( 'upload_mimes' ,    array( 'mime_types_extended', 'addMimeTypes' ) );
+        add_action( 'template_redirect',    array( 'disable_author_pages', 'disable_author_page' ) );
+        add_action( 'admin_init',           array( 'disable_author_pages', 'register_settings' ) );
+        add_action( 'admin_menu',           array( 'disable_author_pages', 'options_menu' ) );        
+        add_action( 'plugins_loaded',       array( 'disable_author_pages', 'load_translations' ) );
+        add_filter( 'author_link',          array( 'disable_author_pages', 'disable_autor_link') );
     }
 
-    function disableautorpage() {
-        if ( is_author() && TRUE === get_option( 'disable_author_pages_activate' ) ) {
-            wp_redirect( home_url() );
+    /**
+     * Redirect the user
+     * 
+     * This function is registerd to the template_redirect hook and do the following checks
+     * if the current pages a autorpage (is_author) and the Plugin is active, the redirect the
+     * user to the selected page (or to the homepage)
+     * 
+     * 
+     */
+    function disable_author_page() {
+        if ( is_author() && get_option( 'disable_author_pages_activate' ) == 1 ) {
+            $status = get_option( 'disable_author_pages_status', '301' );
+            $url = get_option( 'disable_author_pages_destination', '' );
+            if ( $url == '' ) {
+                $url = home_url();
+            }
+            wp_redirect( $url, $status );
             exit;
         }
     }
 
-   function registerSettings() {
+    /**
+     * Register all settings 
+     * 
+     * Register all the settings, the plugin uses.
+     */
+   function register_settings() {
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_activate' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_destination' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_status' );
-        register_setting( 'disable_author_pages_settings', 'disable_author_pages_overwriteauthorlink' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_authorlink' );
+   }
+   
+   /**
+    * Overwrite the author url with an empty string
+    * 
+    * @param string $content url to author page
+    * @return string
+    */
+   function disable_autor_link( $content ) {
+       if ( get_option( 'disable_author_pages_authorlink', '0' ) == 1 ) {
+           return "";
+       } else {
+           return $content;
+       }
    }
    
     /**
      * load the plugin textdomain
      * 
-     * load the plugin textdomain with translations
+     * load the plugin textdomain with translations for the backend settingspage
      */
     function load_translations() {
         load_plugin_textdomain( 'disable_author_pages', false, apply_filters ( 'disable_author_pages_translationpath', dirname( plugin_basename( __FILE__ )) . '/languages/' ) ); 
     }    
-    
 
-    function optionsMenu() {
+    /**
+     * Generate the options menu page
+     * 
+     * Generate the options page under the options menu
+     */
+    function options_menu() {
         add_options_page( 'Disable Autor Pages',  __('Author Pages','disable_author_pages', 'hinweis'), 'manage_options',
-        __FILE__, array( 'disable_author_pages', 'createOptionsDisableAuthorMenu' ) );
+        __FILE__, array( 'disable_author_pages', 'create_options_disable_author_menu' ) );
     }
-    
 
-    function createOptionsDisableAuthorMenu() {
-        global $settings, $mimetypes;
+    /**
+     * Generate the options page for the plugin
+     * 
+     * @global type $settings
+     */
+    function create_options_disable_author_menu() {
+        global $settings;
     ?>
-    <div class="wrap"  id="settingsNeedfulTweaks">
-    <h2><?php _e( 'MIME Types settings', 'disable_author_pages' ); ?></h2>
-    <p><?php _e( 'Activate mimetypes you want to use.', 'disable_author_pages' ); ?></p>
+    <div class="wrap"  id="disableauthorpages">
+    <h2><?php _e( 'Disable Author settings', 'disable_author_pages' ); ?></h2>
+    <p><?php _e( 'Settings to disable the author pages.', 'disable_author_pages' ); ?></p>
     <form method="POST" action="options.php">
     <?php 
     settings_fields( 'disable_author_pages_settings' ); 
@@ -82,8 +122,28 @@ class disable_author_pages {
     </tr>
     <tr>
         <td></td>
-        <td><?php  echo wp_dropdown_pages("echo=0&show_option_none=Keine Seite"); ?></td>
+        <td>
+            <select name="disable_author_pages_status"> 
+                <option value="301" <?php if ( get_option( 'disable_author_pages_status' ) == '301' ) { echo ' selected '; } ?> ><?php _e( '301 (Moved Permanently)', 'disable_author_pages' );?></option>
+                <option value="307" <?php if ( get_option( 'disable_author_pages_status' ) == '307' ) { echo ' selected '; } ?> ><?php _e( '307 (Temporary Redirect)', 'disable_author_pages' );?></option>
+            </select> <?php _e( 'HTTP Status', 'disable_author_pages' );?>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <?php  echo wp_dropdown_pages("name=disable_author_pages_destination&echo=0&show_option_none=" . __( 'Homepage', 'disable_author_pages' ) ); ?>
+            <?php _e( 'Destinationpage', 'disable_author_pages' ); ?>
+        </td>
     </tr>    
+    <tr>
+        <td></td>
+        <td>
+            <input type="checkbox" name="disable_author_pages_authorlink" value="1" <?php if ( get_option( 'disable_author_pages_authorlink' ) ) echo " checked "; ?> />
+            <?php _e( 'Disable Authorlink', 'disable_author_pages' ); ?>
+        </td>
+    </tr>
+    
     </table>
     <br/>
     <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'disable_author_pages' )?>" />
@@ -91,7 +151,5 @@ class disable_author_pages {
     </div>
     <?php   
     }
-    
-
 }
 ?>
