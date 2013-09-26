@@ -20,8 +20,9 @@ Entrys in the changelog with numbers means the ticket id on http://bugs.staude.n
 
 == Installation ==
 
-1. Install the plugin from within the Dashboard or upload the directory `widget-or-sidebar-per-shortcode` and all its contents to the `/wp-content/plugins/` directory
+1. Install the plugin from within the Dashboard or upload the directory `disable-author-pages` and all its contents to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Configure it under settings/disable author pages
 
 == Frequently Asked Questions ==
 English:
