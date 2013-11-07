@@ -3,8 +3,8 @@ Contributors:f.staude
 Donate link: http://www.staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 0.2
+Tested up to: 3.7.1
+Stable tag: 0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,9 @@ Wähle das Projekt "WP Plugin: Disable Author Pages" und trag deinen Wunsch ein.
 
 
 == Changelog ==
+
+= 0.3 =
+Disable some php notices if WP Debug active
 
 = 0.2 =
 - Added settings to Options > Author Pages

@@ -43,7 +43,7 @@ class disable_author_pages {
      * 
      * 
      */
-    function disable_author_page() {
+    static public function disable_author_page() {
         if ( is_author() && get_option( 'disable_author_pages_activate' ) == 1 ) {
             $status = get_option( 'disable_author_pages_status', '301' );
             $url = get_option( 'disable_author_pages_destination', '' );
@@ -60,7 +60,7 @@ class disable_author_pages {
      * 
      * Register all the settings, the plugin uses.
      */
-   function register_settings() {
+   static public function register_settings() {
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_activate' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_destination' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_status' );
@@ -73,7 +73,7 @@ class disable_author_pages {
     * @param string $content url to author page
     * @return string
     */
-   function disable_autor_link( $content ) {
+   static public function disable_autor_link( $content ) {
        if ( get_option( 'disable_author_pages_authorlink', '0' ) == 1 ) {
            return "";
        } else {
@@ -86,7 +86,7 @@ class disable_author_pages {
      * 
      * load the plugin textdomain with translations for the backend settingspage
      */
-    function load_translations() {
+    static public function load_translations() {
         load_plugin_textdomain( 'disable_author_pages', false, apply_filters ( 'disable_author_pages_translationpath', dirname( plugin_basename( __FILE__ )) . '/languages/' ) ); 
     }    
 
@@ -95,7 +95,7 @@ class disable_author_pages {
      * 
      * Generate the options page under the options menu
      */
-    function options_menu() {
+    static public function options_menu() {
         add_options_page( 'Disable Autor Pages',  __('Author Pages','disable_author_pages', 'hinweis'), 'manage_options',
         __FILE__, array( 'disable_author_pages', 'create_options_disable_author_menu' ) );
     }
@@ -105,7 +105,7 @@ class disable_author_pages {
      * 
      * @global type $settings
      */
-    function create_options_disable_author_menu() {
+    static public function create_options_disable_author_menu() {
         global $settings;
     ?>
     <div class="wrap"  id="disableauthorpages">
