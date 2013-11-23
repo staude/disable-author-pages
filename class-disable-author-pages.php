@@ -37,21 +37,29 @@ class disable_author_pages {
     /**
      * Redirect the user
      * 
-     * This function is registerd to the template_redirect hook and do the following checks
-     * if the current pages a autorpage (is_author) and the Plugin is active, the redirect the
-     * user to the selected page (or to the homepage)
-     * 
+     * This function is registerd to the template_redirect hook and  checks
+     * to redirect the user to the selected page (or to the homepage)
      * 
      */
     static public function disable_author_page() {
-        if ( is_author() && get_option( 'disable_author_pages_activate' ) == 1 ) {
-            $status = get_option( 'disable_author_pages_status', '301' );
-            $url = get_option( 'disable_author_pages_destination', '' );
-            if ( $url == '' ) {
-                $url = home_url();
+        $authorrequest = FALSE;
+        $request = ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : $_SERVER[ 'SCRIPT_NAME' ] . ( ( isset( $_SERVER[ 'QUERY_STRING' ] ) ? '?' . $_SERVER[ 'QUERY_STRING' ] : '') ) );
+        if ( is_404() && stripos( $request, '/author/' ) == 0 ) {
+            if ( get_option( 'disable_author_pages_redirect_non_authors' ) == 1 ) {
+                $authorrequest = TRUE;
             }
-            wp_redirect( $url, $status );
-            exit;
+        }
+        if ( ( is_author() || $authorrequest ) && get_option( 'disable_author_pages_activate' ) == 1 ) {
+            $adminonly = get_option( 'disable_author_pages_adminonly', '0' );
+            if ( $adminonly && author_can( get_the_ID(), 'administrator' ) || ! $adminonly ) {
+                $status = get_option( 'disable_author_pages_status', '301' );
+                $url = get_option( 'disable_author_pages_destination', '' );
+                if ( $url == '' ) {
+                    $url = home_url();
+                }
+                wp_redirect( $url, $status );
+                exit;
+            }
         }
     }
 
@@ -65,6 +73,8 @@ class disable_author_pages {
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_destination' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_status' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_authorlink' );
+        register_setting( 'disable_author_pages_settings', 'disable_author_pages_adminonly' ); 
+        register_setting( 'disable_author_pages_settings', 'disable_author_pages_redirect_non_authors' ); 
    }
    
    /**
@@ -143,7 +153,20 @@ class disable_author_pages {
             <?php _e( 'Disable Authorlink', 'disable_author_pages' ); ?>
         </td>
     </tr>
-    
+    <tr>
+        <td></td>
+        <td>
+            <input type="checkbox" name="disable_author_pages_redirect_non_authors" value="1" <?php if ( get_option( 'disable_author_pages_redirect_non_authors' ) ) echo " checked "; ?> />
+            <?php _e( 'Redirect non exists author pages', 'disable_author_pages' ); ?>
+        </td>          
+    </tr>   
+    <tr>
+        <td></td>
+        <td>
+            <input type="checkbox" name="disable_author_pages_adminonly" value="1" <?php if ( get_option( 'disable_author_pages_adminonly' ) ) echo " checked "; ?> />
+            <?php _e( 'Disable for admin author pages only', 'disable_author_pages' ); ?>
+        </td>          
+    </tr>       
     </table>
     <br/>
     <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'disable_author_pages' )?>" />
@@ -152,4 +175,4 @@ class disable_author_pages {
     <?php   
     }
 }
-?>
+

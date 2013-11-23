@@ -4,7 +4,7 @@ Donate link: http://www.staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
 Tested up to: 3.7.1
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,11 @@ Wähle das Projekt "WP Plugin: Disable Author Pages" und trag deinen Wunsch ein.
 
 
 == Changelog ==
+
+= 0.4 =
+- Added feature disable only admin author page (from user BackuPs - Thanks)
+- Added feature redirect non exists autor page (instead of default 404) ( Request from Matt Jensen - Thanks) 
+
 
 = 0.3 =
 Disable some php notices if WP Debug active

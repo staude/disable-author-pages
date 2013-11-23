@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Disable Author Pages v0.3\n"
+"Project-Id-Version: Disable Author Pages v0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-11-07 13:24:20+0000\n"
+"PO-Revision-Date: 2013-11-23 11:05:48+0000\n"
 "Last-Translator: Frank Staude <frank@staude.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,44 +20,44 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
 
-#: class-disable-author-pages.php:99
+#: class-disable-author-pages.php:109
 #@ disable_author_pages
 msgid "Author Pages"
 msgstr "Autorenseiten"
 
-#: class-disable-author-pages.php:112
+#: class-disable-author-pages.php:122
 #@ disable_author_pages
 msgid "Disable Author settings"
 msgstr "Einstellungen für Autorenseiten"
 
-#: class-disable-author-pages.php:113
+#: class-disable-author-pages.php:123
 #@ disable_author_pages
 msgid "Settings to disable the author pages."
 msgstr "Hier können die Einstellungen vorgenommen werden um Autorenseiten zu unterdrücken."
 
 #. translators: plugin header field 'Name'
-#: class-disable-author-pages.php:121
+#: class-disable-author-pages.php:131
 #: disable-author-pages.php:0
 #@ disable_author_pages
 msgid "Disable Author Pages"
 msgstr "Autorenseiten deaktivieren"
 
-#: class-disable-author-pages.php:149
+#: class-disable-author-pages.php:172
 #@ disable_author_pages
 msgid "Save Changes"
 msgstr "Speichern"
 
-#: class-disable-author-pages.php:129
+#: class-disable-author-pages.php:139
 #@ disable_author_pages
 msgid "HTTP Status"
 msgstr "Status der HTTP weiterleitung"
 
-#: class-disable-author-pages.php:136
+#: class-disable-author-pages.php:146
 #@ disable_author_pages
 msgid "Destinationpage"
 msgstr "Zielseite"
 
-#: class-disable-author-pages.php:143
+#: class-disable-author-pages.php:153
 #@ disable_author_pages
 msgid "Disable Authorlink"
 msgstr "Autorenlink unterdrücken"
@@ -86,24 +86,34 @@ msgstr ""
 msgid "http://www.staude.net/"
 msgstr ""
 
-#: class-disable-author-pages.php:127
+#: class-disable-author-pages.php:137
 #@ disable_author_pages
 msgid "301 (Moved Permanently)"
 msgstr "301 (Ständige Umleitung)"
 
-#: class-disable-author-pages.php:128
+#: class-disable-author-pages.php:138
 #@ disable_author_pages
 msgid "307 (Temporary Redirect)"
 msgstr "307 (Voübergehende Umleitung)"
 
-#: class-disable-author-pages.php:135
+#: class-disable-author-pages.php:145
 #@ disable_author_pages
 msgid "Homepage"
 msgstr "Startseite"
 
+#: class-disable-author-pages.php:160
+#@ disable_author_pages
+msgid "Redirect non exists author pages"
+msgstr "Nicht existierende Autoren auch Umleiten"
+
 #. translators: plugin header field 'Version'
 #: disable-author-pages.php:0
 #@ disable_author_pages
-msgid "0.3"
+msgid "0.4"
 msgstr ""
+
+#: class-disable-author-pages.php:167
+#@ disable_author_pages
+msgid "Disable for admin author pages only"
+msgstr "Nur Seiten von Administratoren umleiten"
 
