@@ -1,7 +1,7 @@
 <?php
 
 /*  
- Copyright 2013  Frank Staude  (email : frank@staude.net)
+ Copyright 2014  Frank Staude  (email : frank@staude.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@ class disable_author_pages {
      * 
      */
     static public function disable_author_page() {
+        global $post;
         $authorrequest = FALSE;
         $request = ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : $_SERVER[ 'SCRIPT_NAME' ] . ( ( isset( $_SERVER[ 'QUERY_STRING' ] ) ? '?' . $_SERVER[ 'QUERY_STRING' ] : '') ) );
         if ( is_404() && stripos( $request, '/author/' ) == 0 ) {
@@ -49,9 +50,21 @@ class disable_author_pages {
                 $authorrequest = TRUE;
             }
         }
+        if ( is_404() && stripos( $request, '/author/' ) === false ) {
+                return;
+        }
+
         if ( ( is_author() || $authorrequest ) && get_option( 'disable_author_pages_activate' ) == 1 ) {
             $adminonly = get_option( 'disable_author_pages_adminonly', '0' );
-            if ( $adminonly && author_can( get_the_ID(), 'administrator' ) || ! $adminonly ) {
+            $author_can = false;
+
+            if ( ! is_404() && $adminonly ) {
+                if( is_object( $post ) ) {
+                    $author_can = author_can( get_the_ID(), 'administrator' );
+                }
+            }
+
+            if ( $adminonly && $author_can===true || !$adminonly && !is_404() || is_404() && ( get_option( 'disable_author_pages_redirect_non_authors' ) == 1 ) ) {
                 $status = get_option( 'disable_author_pages_status', '301' );
                 $url = get_option( 'disable_author_pages_destination', '' );
                 if ( $url == '' ) {
@@ -68,28 +81,28 @@ class disable_author_pages {
      * 
      * Register all the settings, the plugin uses.
      */
-   static public function register_settings() {
+    static public function register_settings() {
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_activate' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_destination' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_status' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_authorlink' );
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_adminonly' ); 
         register_setting( 'disable_author_pages_settings', 'disable_author_pages_redirect_non_authors' ); 
-   }
+    }
    
-   /**
-    * Overwrite the author url with an empty string
-    * 
-    * @param string $content url to author page
-    * @return string
-    */
-   static public function disable_autor_link( $content ) {
-       if ( get_option( 'disable_author_pages_authorlink', '0' ) == 1 ) {
-           return "";
-       } else {
-           return $content;
-       }
-   }
+    /**
+     * Overwrite the author url with an empty string
+     * 
+     * @param string $content url to author page
+     * @return string
+     */
+    static public function disable_autor_link( $content ) {
+        if ( get_option( 'disable_author_pages_authorlink', '0' ) == 1 ) {
+            return "";
+        } else {
+            return $content;
+        }
+    }
    
     /**
      * load the plugin textdomain
