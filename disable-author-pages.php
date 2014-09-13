@@ -8,7 +8,7 @@ Version: 0.5
 Text Domain: disable_author_pages
 Domain Path: languages
 Author URI: http://www.staude.net/
-Compatibility: WordPress 3.8.1
+Compatibility: WordPress 4.0
 */
 
 /*  Copyright 2014  Frank Staude  (email : frank@staude.net)
