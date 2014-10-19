@@ -130,6 +130,7 @@ class disable_author_pages {
      */
     static public function create_options_disable_author_menu() {
         global $settings;
+        $selectedpage = get_option( 'disable_author_pages_destination' );
     ?>
     <div class="wrap"  id="disableauthorpages">
     <h2><?php _e( 'Disable Author settings', 'disable_author_pages' ); ?></h2>
@@ -155,7 +156,7 @@ class disable_author_pages {
     <tr>
         <td></td>
         <td>
-            <?php  echo wp_dropdown_pages("name=disable_author_pages_destination&echo=0&show_option_none=" . __( 'Homepage', 'disable_author_pages' ) ); ?>
+            <?php  echo wp_dropdown_pages("name=disable_author_pages_destination&selected={$selectedpage}&echo=0&show_option_none=" . __( 'Homepage', 'disable_author_pages' ) ); ?>
             <?php _e( 'Destinationpage', 'disable_author_pages' ); ?>
         </td>
     </tr>    

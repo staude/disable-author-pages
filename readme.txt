@@ -4,7 +4,7 @@ Donate link: http://www.staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 0.5
+Stable tag: 0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,9 @@ Wähle das Projekt "WP Plugin: Disable Author Pages" und trag deinen Wunsch ein.
 
 
 == Changelog ==
+
+= 0.6 =
+Fix: When I choose redirect to "Profile" page and save, the dialogue reverts back to Homepage. ( Thanks to Tradedog )
 
 = 0.5 =
 Fix: Notice: Trying to get property of non-object in wp-includes/post-template.php on line 29 (from user BackuPs - Thanks)
