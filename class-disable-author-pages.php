@@ -44,16 +44,16 @@ class disable_author_pages {
     static public function disable_author_page() {
         global $post;
         $authorrequest = FALSE;
-        $request = ( isset( $_SERVER[ 'REQUEST_URI' ] ) ? $_SERVER[ 'REQUEST_URI' ] : $_SERVER[ 'SCRIPT_NAME' ] . ( ( isset( $_SERVER[ 'QUERY_STRING' ] ) ? '?' . $_SERVER[ 'QUERY_STRING' ] : '') ) );
-        if ( is_404() && stripos( $request, '/author/' ) == 0 ) {
-            if ( get_option( 'disable_author_pages_redirect_non_authors' ) == 1 ) {
-                $authorrequest = TRUE;
-            }
-        }
-        if ( is_404() && stripos( $request, '/author/' ) === false ) {
-                return;
+        if ( is_404() && ( get_query_var( 'author' ) || get_query_var( 'author_name' ) ) ) {
+              if ( get_option( 'disable_author_pages_redirect_non_authors' ) == 1 ) {
+                  $authorrequest = true;
+              }
         }
 
+        if ( is_404() && ! ( get_query_var( 'author' ) || get_query_var( 'author_name' ) ) ) {
+              return;
+        }
+ 
         if ( ( is_author() || $authorrequest ) && get_option( 'disable_author_pages_activate' ) == 1 ) {
             $adminonly = get_option( 'disable_author_pages_adminonly', '0' );
             $author_can = false;
