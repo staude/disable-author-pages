@@ -4,7 +4,7 @@ Donate link: http://www.staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
 Tested up to: 4.0
-Stable tag: 0.6
+Stable tag: 0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,15 +33,11 @@ Send them by e-mail to frank@staude.net, I will then install the next update wit
 
 = I found a bug  =
 
-Please report it at http://bugs.staude.net
-
-Select the project "WP Plugin: Disable Author Pages" and report it.
+Please report it at https://github.com/staude/disable-author-pages/issues
 
 = I have a feature request =
 
-Please report it at http://bugs.staude.net
-
-Select the project "WP Plugin: Disable Author Pages" and report it.
+Please report it at https://github.com/staude/disable-author-pages/issues
 
 
 
@@ -53,20 +49,24 @@ Schick sie mir per e-mail an frank@staude.net, ich werde sie dann beim nächsten
 
 = Ich habe einen Fehler gefunden  =
 
-Bitte geh auf die Seite http://bugs.staude.net und melde dich dort an.
-
-Wähle das Projekt "WP Plugin: Disable Author Pages" und melde den Fehler.
+Bitte trag es ein auf https://github.com/staude/disable-author-pages/issues
 
 = Ich möchte eine neue Funktion vorschlage  =
 
-Bitte geh auf die Seite http://bugs.staude.net und melde dich dort an.
-
-Wähle das Projekt "WP Plugin: Disable Author Pages" und trag deinen Wunsch ein.
+Bitte trag es ein auf https://github.com/staude/disable-author-pages/issues
 
 
 
 
 == Changelog ==
+
+= 0.7 =
+- Make it work if WordPress installed in a subdirectory
+  https://github.com/staude/disable-author-pages/pull/1
+  Thanks to smeric
+- Moved sourcecode to GitHub: https://github.com/staude/disable-author-pages
+- Moved Issuetracker to GitHub: https://github.com/staude/disable-author-pages/issues
+
 
 = 0.6 =
 Fix: When I choose redirect to "Profile" page and save, the dialogue reverts back to Homepage. ( Thanks to Tradedog )
