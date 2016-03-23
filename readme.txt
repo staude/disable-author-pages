@@ -4,7 +4,7 @@ Donate link: https://staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
 Tested up to: 4.4.2
-Stable tag: 0.7
+Stable tag: 0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,10 @@ Bitte trag es ein auf https://github.com/staude/disable-author-pages/issues
 
 
 == Changelog ==
+
+= 0.8 =
+- Updated German Translation, Urls and Description. Thanks to krafit
+- Minor spelling correction. Thanks to tristanpenman
 
 = 0.7 =
 - Make it work if WordPress installed in a subdirectory
