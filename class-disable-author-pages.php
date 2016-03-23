@@ -31,7 +31,7 @@ class disable_author_pages {
         add_action( 'admin_init',           array( 'disable_author_pages', 'register_settings' ) );
         add_action( 'admin_menu',           array( 'disable_author_pages', 'options_menu' ) );        
         add_action( 'plugins_loaded',       array( 'disable_author_pages', 'load_translations' ) );
-        add_filter( 'author_link',          array( 'disable_author_pages', 'disable_autor_link') );
+        add_filter( 'author_link',          array( 'disable_author_pages', 'disable_author_link') );
     }
 
     /**
@@ -96,7 +96,7 @@ class disable_author_pages {
      * @param string $content url to author page
      * @return string
      */
-    static public function disable_autor_link( $content ) {
+    static public function disable_author_link( $content ) {
         if ( get_option( 'disable_author_pages_authorlink', '0' ) == 1 ) {
             return "";
         } else {
@@ -119,7 +119,7 @@ class disable_author_pages {
      * Generate the options page under the options menu
      */
     static public function options_menu() {
-        add_options_page( 'Disable Autor Pages',  __('Author Pages','disable_author_pages', 'hinweis'), 'manage_options',
+        add_options_page( 'Disable Author Pages',  __('Author Pages','disable_author_pages', 'hinweis'), 'manage_options',
         __FILE__, array( 'disable_author_pages', 'create_options_disable_author_menu' ) );
     }
 
