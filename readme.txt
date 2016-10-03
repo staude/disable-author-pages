@@ -3,8 +3,8 @@ Contributors:f.staude
 Donate link: https://staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
-Tested up to: 4.4.2
-Stable tag: 0.8
+Tested up to: 4.6.1
+Stable tag: 0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,26 +39,12 @@ Please report it at https://github.com/staude/disable-author-pages/issues
 
 Please report it at https://github.com/staude/disable-author-pages/issues
 
-
-
-Deutsch:
-
-= Ich habe eine neue Übersetzung fertiggestellt  =
-
-Schick sie mir per e-mail an frank@staude.net, ich werde sie dann beim nächsten Update mit einbauen
-
-= Ich habe einen Fehler gefunden  =
-
-Bitte trag es ein auf https://github.com/staude/disable-author-pages/issues
-
-= Ich möchte eine neue Funktion vorschlage  =
-
-Bitte trag es ein auf https://github.com/staude/disable-author-pages/issues
-
-
-
-
 == Changelog ==
+
+= 0.9 =
+- fix: redirect to pages. Thanks to Georg
+- changed text domain for translations via translate.wordpress.org
+- added github updater metadata
 
 = 0.8 =
 - Updated German Translation, Urls and Description. Thanks to krafit
