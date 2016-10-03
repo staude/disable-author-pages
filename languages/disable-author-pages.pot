@@ -1,0 +1,86 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Disable Author Pages\n"
+"POT-Creation-Date: 2016-10-03 13:51+0200\n"
+"PO-Revision-Date: 2016-10-03 13:51+0200\n"
+"Last-Translator: Frank Staude <frank@staude.net>\n"
+"Language-Team: Frank Staude <frank@staude.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: disable-author-pages.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: class-disable-author-pages.php:124
+msgid "Author Pages"
+msgstr ""
+
+#: class-disable-author-pages.php:138
+msgid "Disable Author settings"
+msgstr ""
+
+#: class-disable-author-pages.php:139
+msgid "Settings to disable the author pages."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: class-disable-author-pages.php:147
+msgid "Disable Author Pages"
+msgstr ""
+
+#: class-disable-author-pages.php:153
+msgid "301 (Moved Permanently)"
+msgstr ""
+
+#: class-disable-author-pages.php:154
+msgid "307 (Temporary Redirect)"
+msgstr ""
+
+#: class-disable-author-pages.php:155
+msgid "HTTP Status"
+msgstr ""
+
+#: class-disable-author-pages.php:162
+msgid "Destinationpage"
+msgstr ""
+
+#: class-disable-author-pages.php:169
+msgid "Disable Authorlink"
+msgstr ""
+
+#: class-disable-author-pages.php:176
+msgid "Redirect non exists author pages"
+msgstr ""
+
+#: class-disable-author-pages.php:183
+msgid "Disable for admin author pages only"
+msgstr ""
+
+#: class-disable-author-pages.php:188
+msgid "Save Changes"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://staude.net/wordpress/plugins/disable-author-pages/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Disable the author pages in WordPress and redirect to the homepage."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Frank Staude"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://staude.net/"
+msgstr ""
