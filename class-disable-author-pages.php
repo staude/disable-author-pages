@@ -32,6 +32,7 @@ class disable_author_pages {
         add_action( 'admin_menu',           array( 'disable_author_pages', 'options_menu' ) );        
         add_action( 'plugins_loaded',       array( 'disable_author_pages', 'load_translations' ) );
         add_filter( 'author_link',          array( 'disable_author_pages', 'disable_author_link') );
+        add_filter( 'plugin_action_links_disable-author-pages/disable-author-pages.php' , array( 'disable_author_pages', 'plugin_settings_link' ) );
     }
 
     /**
@@ -158,8 +159,9 @@ class disable_author_pages {
     <tr>
         <td></td>
         <td>
-            <?php  echo wp_dropdown_pages("name=disable_author_pages_destination&selected={$selectedpage}&echo=0"); ?>
-            <?php _e( 'Destinationpage', 'disable-author-pages' ); ?>
+            <?php
+            echo wp_dropdown_pages("name=disable_author_pages_destination&selected={$selectedpage}&echo=0");
+            _e( 'Destinationpage', 'disable-author-pages' ); ?>
         </td>
     </tr>    
     <tr>
@@ -190,5 +192,19 @@ class disable_author_pages {
     </div>
     <?php   
     }
+
+    /**
+     * add link on plugin page
+     *
+     * @param $links
+     * @return mixed
+     * @since 0.10
+     */
+    function plugin_settings_link( $links ) {
+        $settings_link = '<a href="options-general.php?page=disable-author-pages%2Fclass-disable-author-pages.php">' . __('Settings', 'disable-author-pages') . '</a>';
+        array_unshift($links, $settings_link);
+        return $links;
+    }
+
 }
 

@@ -4,16 +4,16 @@
  * Plugin URI: https://staude.net/wordpress/plugins/disable-author-pages/
  * Description: Disable the author pages in WordPress and redirect to the homepage.
  * Author: Frank Staude
- * Version: 0.9
+ * Version: 0.10
  * Text Domain: disable-author-pages
  * Domain Path: languages
  * Author URI: https://staude.net/
- * Compatibility: WordPress 4.6.1
+ * Compatibility: WordPress 4.7.2
  * GitHub Plugin URI: https://github.com/staude/disable-author-pages/
  * GitHub Branch: master
  */
 
-/*  Copyright 2014-2016  Frank Staude  (email : frank@staude.net)
+/*  Copyright 2014-2017  Frank Staude  (email : frank@staude.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,7 +39,8 @@ if (!class_exists( 'disable_author_pages' ) ) {
      * Delete options on plugin install
      */
     function disable_author_pages_uninstall() {
-        //$wpdb->query( "DELETE FROM $wpdb->usermeta WHERE meta_key = 'backend_startpage';" );
+        global $wpdb;
+        $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name like 'disable_author_pages_%';" );
     }
 
     register_uninstall_hook( __FILE__,  'disable_author_pages_uninstall' );

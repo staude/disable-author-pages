@@ -3,8 +3,8 @@ Contributors:f.staude
 Donate link: https://staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
-Tested up to: 4.6.1
-Stable tag: 0.9
+Tested up to: 4.7.2
+Stable tag: 0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,6 @@ Entrys in the changelog with numbers means the ticket id on http://bugs.staude.n
 1. Configure it under settings/disable author pages
 
 == Frequently Asked Questions ==
-English:
 
 = I have a new translation  =
 
@@ -40,6 +39,9 @@ Please report it at https://github.com/staude/disable-author-pages/issues
 Please report it at https://github.com/staude/disable-author-pages/issues
 
 == Changelog ==
+= 0.10 =
+- DB clean up on uninstall
+- added settings list on pluginlist
 
 = 0.9 =
 - fix: redirect to pages. Thanks to Georg
