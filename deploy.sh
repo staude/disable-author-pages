@@ -43,7 +43,7 @@ if git show-ref --quiet --tags --verify -- "refs/tags/$NEWVERSION1"
 		echo
 fi
 
-cd $GITPATH
+cd "$GITPATH"
 
 echo -n "Saving previous Git tag version..."
 PREVTAG=`git describe --tags \`git rev-list --tags --max-count=1\``

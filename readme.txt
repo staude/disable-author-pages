@@ -4,7 +4,7 @@ Donate link: https://staude.net/donate/
 Tags: widgets, page, post, sidebar, shortcode
 Requires at least: 3.0
 Tested up to: 4.7.2
-Stable tag: 0.10
+Stable tag: 0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,9 +13,6 @@ Disable the author pages
 == Description ==
 
 Disable the author pages ( /author=? ) in wordpress and redirect the user to another page.
-
-Entrys in the changelog with numbers means the ticket id on http://bugs.staude.net
-
 
 
 == Installation ==
@@ -28,7 +25,7 @@ Entrys in the changelog with numbers means the ticket id on http://bugs.staude.n
 
 = I have a new translation  =
 
-Send them by e-mail to frank@staude.net, I will then install the next update with.
+Translations are handled via  https://translate.wordpress.org/projects/wp-plugins/disable-author-pages
 
 = I found a bug  =
 
@@ -39,6 +36,10 @@ Please report it at https://github.com/staude/disable-author-pages/issues
 Please report it at https://github.com/staude/disable-author-pages/issues
 
 == Changelog ==
+= 0.11 =
+- version tagging sync github / wordpress.org svn. Thanks to swissspidy
+- fix: notice plugin_settings_link not static. Thanks to swissspidy
+
 = 0.10 =
 - DB clean up on uninstall
 - added settings list on pluginlist

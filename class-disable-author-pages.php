@@ -1,7 +1,7 @@
 <?php
 
 /*  
- Copyright 2014-2016  Frank Staude  (email : frank@staude.net)
+ Copyright 2014-2017  Frank Staude  (email : frank@staude.net)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -200,7 +200,7 @@ class disable_author_pages {
      * @return mixed
      * @since 0.10
      */
-    function plugin_settings_link( $links ) {
+    static public function plugin_settings_link( $links ) {
         $settings_link = '<a href="options-general.php?page=disable-author-pages%2Fclass-disable-author-pages.php">' . __('Settings', 'disable-author-pages') . '</a>';
         array_unshift($links, $settings_link);
         return $links;
