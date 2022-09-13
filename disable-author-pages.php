@@ -43,6 +43,16 @@ if (!class_exists( 'disable_author_pages' ) ) {
         $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name like 'disable_author_pages_%';" );
     }
 
+    add_filter( 'rest_endpoints', function( $endpoints ){
+        if ( isset( $endpoints['/wp/v2/users'] ) ) {
+            unset( $endpoints['/wp/v2/users'] );
+        }
+        if ( isset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] ) ) {
+            unset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+        }
+        return $endpoints;
+    });
+    
     register_uninstall_hook( __FILE__,  'disable_author_pages_uninstall' );
 
     $disable_author_pages = new disable_author_pages();
