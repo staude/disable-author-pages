@@ -1,10 +1,11 @@
-=== Plugin Name ===
-Contributors:f.staude
+=== Disable Author Pages ===
+Contributors: f.staude
 Donate link: https://staude.net/donate/
-Tags: widgets, page, post, sidebar, shortcode
-Requires at least: 3.0
-Tested up to: 4.7.2
-Stable tag: 0.11
+Tags: author, author page, redirect, security, user enumeration
+Requires at least: 6.5
+Tested up to: 7.0
+Requires PHP: 8.2
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,8 +13,17 @@ Disable the author pages
 
 == Description ==
 
-Disable the author pages ( /author=? ) in wordpress and redirect the user to another page.
+Disable the author pages ( /author=? ) in WordPress and redirect the user to another page.
 
+Beyond the classic author archives, WordPress exposes author data in several other places.
+This plugin can optionally close those as well:
+
+* **REST API**: hide the `/wp-json/wp/v2/users` endpoints for visitors who are not logged in, so usernames are no longer listed publicly.
+* **XML sitemap**: remove the users sitemap (`wp-sitemap-users.xml`) from the WordPress core sitemaps.
+* **oEmbed**: remove the author name and the author archive link from oEmbed responses.
+* **Author enumeration**: stop requests like `?author=1` from redirecting to `/author/username/` and leaking the username.
+
+All options are disabled by default, so updating the plugin does not change the behavior of an existing installation.
 
 == Installation ==
 
@@ -35,7 +45,24 @@ Please report it at https://github.com/staude/disable-author-pages/issues
 
 Please report it at https://github.com/staude/disable-author-pages/issues
 
+= Why are usernames still visible in the REST API? =
+
+Enable the option "Hide users in the REST API" on the settings page. The endpoints stay
+available for logged-in users, so the author selection in the block editor keeps working.
+
 == Changelog ==
+= 1.0.0 =
+- Modernized for current WordPress (tested up to 7.0) and PHP (requires 8.2, tested against PHP 8.4)
+- New option: hide the REST API user endpoints (/wp/v2/users) for visitors. Thanks to paulo-graca (issue #10 / PR #11)
+- New option: remove the users sitemap from the WordPress core sitemaps (wp-sitemap-users.xml)
+- New option: remove author name and author archive link from oEmbed responses
+- New option: prevent author enumeration via ?author=N (canonical redirect)
+- The destination page dropdown now offers "Homepage" as an explicit choice (issue #6)
+- Fixed the plugin tags in the readme (issue #8)
+- Settings are now sanitized, output is escaped, redirects use wp_safe_redirect()
+- Uninstall cleanup moved to uninstall.php using delete_option() instead of a raw SQL query
+- Removed the obsolete load_plugin_textdomain() call (translations load automatically since WordPress 4.6)
+
 = 0.11 =
 - version tagging sync github / wordpress.org svn. Thanks to swissspidy
 - fix: notice plugin_settings_link not static. Thanks to swissspidy
@@ -69,7 +96,7 @@ Fix: Notice: Trying to get property of non-object in wp-includes/post-template.p
 
 = 0.4 =
 - Added feature disable only admin author page (from user BackuPs - Thanks)
-- Added feature redirect non exists autor page (instead of default 404) ( Request from Matt Jensen - Thanks) 
+- Added feature redirect non exists autor page (instead of default 404) ( Request from Matt Jensen - Thanks)
 
 
 = 0.3 =
@@ -77,7 +104,7 @@ Disable some php notices if WP Debug active
 
 = 0.2 =
 - Added settings to Options > Author Pages
-- 0000027: Overwrite the author_link (optional). 
+- 0000027: Overwrite the author_link (optional).
 - 0000029: status of redirect
 - 0000028: Select destination for redirect
 
@@ -85,3 +112,7 @@ Disable some php notices if WP Debug active
 = 0.1 =
 First version.
 
+== Upgrade Notice ==
+
+= 1.0.0 =
+Requires PHP 8.2 and WordPress 6.5 or later. New optional protections for the REST API, XML sitemap, oEmbed and author enumeration - all disabled by default.
